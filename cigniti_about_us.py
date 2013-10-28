@@ -9,19 +9,19 @@ class CignitiAboutUs(unittest.TestCase):
 
     desired_capabilities = {
                 "browserName": "firefox",
-                "appID" : "appID",
                 "version": "23",
                 "platform":"LINUX",
                 "hubUrl" : "http://127.0.0.1:4444/wd/hub"
                 }
+                
     def setUp(self):
-	self.driver = webdriver.Remote(desired_capabilities=CignitiHome.desired_capabilities)
+        self.driver = webdriver.Remote(desired_capabilities=CignitiAboutUs.desired_capabilities)
         self.driver.implicitly_wait(30)
         self.base_url = "http://www.cigniti.com"
         self.verificationErrors = []
         self.accept_next_alert = True
     
-    def test_cigniti_about_us(self):
+    def test_basic_link(self):
         driver = self.driver
         driver.get(self.base_url + "/")
         driver.find_element_by_link_text("About Us").click()

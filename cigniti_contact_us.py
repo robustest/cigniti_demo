@@ -9,21 +9,20 @@ class CignitiContactUs(unittest.TestCase):
 
     desired_capabilities = {
                 "browserName": "firefox",
-                "appID" : "appID",
                 "version": "23",
                 "platform":"LINUX",
                 "hubUrl" : "http://127.0.0.1:4444/wd/hub"
                 }
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Remote(desired_capabilities=CignitiContactUs.desired_capabilities)
         self.driver.implicitly_wait(30)
         self.base_url = "http://www.cigniti.com"
         self.verificationErrors = []
         self.accept_next_alert = True
     
-    def test_cigniti_contact_us(self):
-	self.driver = webdriver.Remote(desired_capabilities=CignitiHome.desired_capabilities)
+    def test_basic_link_text(self):
+        driver = self.driver
         driver.get(self.base_url + "/")
         driver.find_element_by_link_text("Contact Us").click()
         try: self.assertEqual("Contact Us", driver.find_element_by_css_selector("div.content-right-item > span.block-title > h2.title").text)
